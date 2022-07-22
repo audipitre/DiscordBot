@@ -1,8 +1,15 @@
 {
+    "isBotRespondingCommand" : {
+        "identifier" : "areyouresponding",
+        "name" : "are you responding",
+        "description" : "Checks whether the bot is responding and online.",
+        "example" : "mups! are you responding"
+    },
+
     "showAllMupsCommand" : {
         "identifier": "showallmups",
         "name" : "show all mups",
-        "description" : "Lists everyone and their muppet count",
+        "description" : "Lists everyone and their muppet count.",
         "example" : "'mups! show all mups'"
         },
 

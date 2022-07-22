@@ -6,6 +6,10 @@ const { listAvailableAndNonAvailableBoys } = require('./mup_functions.js');
 const { MessageNonceType } = require('discord.js/src/errors/ErrorCodes.js');
 
 module.exports = {
+    isBotRespondingCommand : function(message){
+        message.channel.send("I'm here ya mup!\n");
+    },
+
     isAMupCommand: function (messageContents, mupCounters, message) {
         const whoIsAMup = messageContents.substring(0, messageContents.length - mupCommandData.isAMupCommand.identifier.length);
 

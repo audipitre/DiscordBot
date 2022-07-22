@@ -6,6 +6,8 @@ const mupGodCommandData = require('./god_commands.json');
 const mupCommands = require('./mup_commands.js');
 const mupGodCommands = require('./mup_god_commands.js');
 
+const godCommandCentre = require('./runGodCommands.js');
+
 var path = require('path');
 const { getTheBoys } = require('./mup_functions.js');
 
@@ -19,6 +21,7 @@ module.exports = {
 
         const isAMupIdentifier = parsedMessage.substring(parsedMessage.length - mupCommandData.isAMupCommand.identifier.length, parsedMessage.length);
         const isAFuckingMupIdentifier = parsedMessage.substring(parsedMessage.length - mupCommandData.isAFuckingMupCommand.identifier.length, parsedMessage.length);
+
         if (isAMupIdentifier === mupCommandData.isAMupCommand.identifier) {
             mupCommands.isAMupCommand(parsedMessage, mupCounters, message);
         }
@@ -29,10 +32,7 @@ module.exports = {
             let arguments = parsedMessage.substring(mupCommandData.mupCommand.identifier.length, parsedMessage.length);
 
             if (message.author.username === "cal") {
-                switch (arguments) {
-                    case mupGodCommandData.resetMupCountersGodCommand.identifier:
-                        mupGodCommands.resetMupsGodCommand(mupCounters, message);
-                }
+                arguments = godCommandCentre.runGodCommands(arguments, message);
             }
 
             if (arguments.includes(mupCommandData.showMupCommand.identifier)) {
@@ -62,6 +62,12 @@ module.exports = {
                     case mupCommandData.whoIsTheBiggestMupCommand.identifier:
                         mupCommands.whoIsTheBiggestMupCommand(mupCounters, message);
                         break;
+                    case mupCommandData.isBotRespondingCommand.identifier:
+                        mupCommands.isBotRespondingCommand(message);
+                        break;
+                    case mupCommandData.flexCommand.identifier:
+                        mupCommands.flexCommand(message);
+                        break;
                     case "spazzyluke":
                         message.channel.send("https://scontent-man2-1.xx.fbcdn.net/v/t1.18169-9/10888390_10152655431878865_4877208139323155836_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=cdbe9c&_nc_ohc=lRxObl1nGboAX9MjTDG&_nc_ht=scontent-man2-1.xx&oh=00_AT9BoTqDJ041kJzEwieSzlAZThVQP--RQ9ci77sa2kr2wQ&oe=62FDC2EE");
                         break;
@@ -74,12 +80,6 @@ module.exports = {
                         break
                     case "sexyphyv":
                         message.channel.send("https://cdn.discordapp.com/attachments/533496602665549844/1000042554890408086/IMG-20161222-WA0021.jpeg");
-                        break;
-                    case "test":
-                        const test = new FileOptions();
-                        break;
-                    case "flex?":
-                        mupCommands.flexCommand(message);
                         break;
                     default:
                         message.channel.send(`Command: '${arguments}' could not be found.`);
