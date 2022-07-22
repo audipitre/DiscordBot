@@ -9,7 +9,7 @@ module.exports =
     getFlexMessage : function(numberOfAvailableBoys){
         let botMessage = "";
 
-        if (numberOfAvailableBoys === 5) {
+        if (numberOfAvailableBoys >= 5) {
             botMessage = "There is deffo a flex on the cards, there's 5 mups online.\n";
 
         }
