@@ -1,0 +1,6 @@
+{
+    "resetMupCountersGodCommand" : {
+        "identifier" : "resetmupcounters",
+        "name" : "reset mup counters"
+        }
+}

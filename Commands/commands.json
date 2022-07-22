@@ -1,0 +1,49 @@
+{
+    "showAllMupsCommand" : {
+        "identifier": "showallmups",
+        "name" : "show all mups",
+        "description" : "Lists everyone and their muppet count",
+        "example" : "'mups! show all mups'"
+        },
+
+    "isAMupCommand" : {
+        "identifier" : "isamup",
+        "name" : "is a mup",
+        "description" : "Adds a mup to selected persons mup counter.",
+        "example" : "'cal is a mup'"
+    },
+
+    "isAFuckingMupCommand" : {
+        "identifier" : "isafuckingmup",
+        "name" : "is a fucking mup",
+        "description" : "Adds two mups to selected persons mup counter.",
+        "example" : "cal is a fucking mup"
+    },
+
+    "whoIsTheBiggestMupCommand" : { 
+        "identifier" : "whoisthebiggestmup",
+        "name" : "who is the biggest mup",
+        "description" : "Shows the person who is the biggest muppet, which is the person with the most mup counts.",
+        "example" : "'mups! who is the biggest mup"
+},
+
+    "showMupCommand" : {
+        "identifier" : "showmup",
+        "name" : "show mup",
+        "description" : "Show's a selected mup's mup counter.",
+        "example" : "'mups! show mup cal'"
+},
+    "mupCommand" : {
+        "identifier" : "mups!",
+        "name" : "mup prefix",
+        "description" : "The prefix for most of the commands for the bot.",
+        "example" : "'mups! command goes here'"
+    },
+
+    "flexCommand" : {
+        "identifier" : "flex?",
+        "name" : "flex?",
+        "description" : "Call this command to see if there is a possible flex angle.",
+        "example" : "mups! flex?"
+    }
+}

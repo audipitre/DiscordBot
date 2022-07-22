@@ -1,8 +1,9 @@
 3//discord shit
 const { token } = require('./config.json');
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
+const client = new Client({ intents: [GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildPresences, GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 client.command = new Collection();
+
 
 //useful shit
 const fs = require("fs");
