@@ -1,11 +1,40 @@
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const mupFunctions = require('./mup_functions.js');
 const mupCommandData = require('./commands.json');
 var path = require('path');
 const { createAudioPlayer, createAudioResource, joinVoiceChannel } = require('@discordjs/voice');
 const { listAvailableAndNonAvailableBoys } = require('./mup_functions.js');
 const { MessageNonceType } = require('discord.js/src/errors/ErrorCodes.js');
+const { fileURLToPath } = require('url');
+
+const flexers = require(path.dirname(__dirname) + '/MupsData/flexers.json')
 
 module.exports = {
+    testButtonCommand : function(message){
+        const row = new ActionRowBuilder()
+        .addComponents(
+            new ButtonBuilder()
+                .setCustomId('reeceYesButton')
+                .setLabel('Yes')
+                .setStyle(ButtonStyle.Primary),
+        );
+        const rows = new ActionRowBuilder()
+        .addComponents(
+            new ButtonBuilder()
+                .setCustomId('reeceNoButton')
+                .setLabel('No')
+                .setStyle(ButtonStyle.Primary),
+        );
+
+        const guildMembers = Array.from(message.client.users.cache);
+
+        for(var guildMember in guildMembers){
+            if(guildMembers[guildMember][1].username + "#" + guildMembers[guildMember][1].discriminator === flexers.luke){
+                guildMembers[guildMember][1].send({content: "Do you think James is a mup?", components: [row, rows]});
+            }
+        }
+    },
+
     isBotRespondingCommand : function(message){
         message.channel.send("I'm here ya mup!\n");
     },

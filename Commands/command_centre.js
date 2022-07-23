@@ -81,6 +81,13 @@ module.exports = {
                     case "sexyphyv":
                         message.channel.send("https://cdn.discordapp.com/attachments/533496602665549844/1000042554890408086/IMG-20161222-WA0021.jpeg");
                         break;
+                    case "testbutton":
+                        mupCommands.testButtonCommand(message);
+                        break;
+                    case "test":
+                        let data_ob = new Date();
+                        console.log(data_ob);
+                        break;
                     default:
                         message.channel.send(`Command: '${arguments}' could not be found.`);
                 }
