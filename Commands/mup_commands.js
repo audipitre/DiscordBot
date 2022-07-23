@@ -81,40 +81,26 @@ module.exports = {
     },
 
     flexCommand: function (message) {
+        let availableBoys = [];
+        let notAvailableBoys = [];
         message.guild.members.fetch().then(function (guildMembers) {
-            theBoys = mupFunctions.getTheBoys(guildMembers, message);
-            let availableBoys = []
-            let notAvailableBoys = [];
+            const theBoys = mupFunctions.getTheBoys(guildMembers);
 
-            for (var currentBoy in theBoys) {
-                if (mupFunctions.isThisBoyAvailable(theBoys[currentBoy])) {
-                    availableBoys.push(theBoys[currentBoy]);
-                }
-                else {
-                    notAvailableBoys.push(theBoys[currentBoy]);
-                }
-            }
-            MessageNonceType
-            let botMessage = "";
-            if (availableBoys.length > 5) {
-                botMessage = "There is deffo a flex on the cards, there's ";
-                botMessage = botMessage +availableBoys.length;
-                botMessage = botMessage + " mups online.\n";
-            }
-            else if (availableBoys.length === 4) {
-                botMessage = "There is a potential flex angle, there's 4 mups online, so it might be a bit awkard.\n"
-                //add options to invite trippy server?
-            }
-            else if (availableBoys.length === 3) {
-                botMessage = "There's a 3's on the table, there's 4 mups online.\n";
-            }
-            else {
-                botMessage = "A flex isn't on the cards :(\n";
-            }
-            //botMessage = mupFunctions.getFlexMessage(numberOfAvailableBoys) + mupFunctions.listAvailableAndNonAvailableBoys(availableBoys, notAvailableBoys, message);
-            botMessage = botMessage + mupFunctions.listAvailableAndNonAvailableBoys(availableBoys, notAvailableBoys, message);
+            availableBoys = mupFunctions.getAvailableBoys(theBoys);
+            notAvailableBoys = mupFunctions.getNotAvailableBoys(theBoys);
+
+            const botMessage = mupFunctions.getFlexMessage(availableBoys.length) + mupFunctions.listAvailableAndNonAvailableBoys(availableBoys, notAvailableBoys, message);
             message.channel.send(botMessage);
         })
+    },
+
+    getAFlexGoingCommand: function(message){
+        if(mupFunctions.isThereAPotentialFlex(message)){
+
+        }
+        else{
+            
+        }
     },
 
     audioTestCommand: function (message) {

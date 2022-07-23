@@ -1,0 +1,14 @@
+<@149670536060862465> called command: showallmups at Sat Jul 23 2022 18:49:03 GMT+0100 (British Summer Time)
+
+<@149670536060862465> called command: showallmups at Sat Jul 23 2022 18:49:28 GMT+0100 (British Summer Time)
+
+<@149670536060862465> called command: showallmups at Sat Jul 23 2022 18:50:21 GMT+0100 (British Summer Time)
+
+cal#7532 called command: showallmups at Sat Jul 23 2022 18:50:57 GMT+0100 (British Summer Time)
+
+cal#7532 called command: help at Sat Jul 23 2022 19:01:23 GMT+0100 (British Summer Time)
+
+cal#7532 called command: showmup at Sat Jul 23 2022 19:02:44 GMT+0100 (British Summer Time)
+
+cal#7532 called command: flex? at Sat Jul 23 2022 19:02:47 GMT+0100 (British Summer Time)
+

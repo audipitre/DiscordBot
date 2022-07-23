@@ -57,7 +57,7 @@ module.exports =
         return botMessage;
     },
 
-    getTheBoys: function (guildMembers, message) {
+    getTheBoys: function (guildMembers) {
         let theMembers = Array.from(guildMembers.values());
         var theBoys = [];
         for (var currentMember in theMembers) {
@@ -156,5 +156,54 @@ module.exports =
 
         let data = JSON.stringify(mupCounters);
         fs.writeFileSync(path.dirname(__dirname) + "/MupsData/mup_counter.json", data);
+    },
+
+    getAvailableBoys : function(theBoys){
+        let availableBoys = [];
+        for (var currentBoy in theBoys) {
+            if (module.exports.isThisBoyAvailable(theBoys[currentBoy])) {
+                availableBoys.push(theBoys[currentBoy]);
+            }
+        }
+        return availableBoys;
+    },
+
+    getNotAvailableBoys : function(theBoys){
+        let notAvailableBoys = [];
+        for(var currentBoy in theBoys){
+            if(!module.exports.isThisBoyAvailable(theBoys[currentBoy])){
+                notAvailableBoys.push(theBoys[currentBoy]);
+            }
+        }
+        return notAvailableBoys;
+    },
+
+    isThereAPotentialFlex : function(message){
+        let potentialFlex = false;
+
+        message.guild.members.fetch().then(function (guildMembers) {
+            theBoys = module.exports.getTheBoys(guildMembers, message);
+            let availableBoys = getAvailableBoys(theBoys);
+            let notAvailableBoys = getNotAvailableBoys(theBoys);
+
+            if (availableBoys.length >= 3 ){
+                potentialFlex = true;
+            }
+
+            console.log(availableBoys);
+            console.log(notAvailableBoys);
+        })
+        return potentialFlex;
+    },
+
+    logCommandUses : function(message, whoUsed, commandUsed){
+        const pathToLogFile = path.dirname(__dirname) + '\\log.txt'
+        let data_ob = new Date();
+        const logLine = `${message.author.username}#${message.author.discriminator} called command: ${commandUsed} at ${data_ob}`
+        console.log(logLine);
+
+        fs.appendFile(pathToLogFile, logLine +'\n\n', function (err) {
+            if (err) throw err;
+          });
     }
 }

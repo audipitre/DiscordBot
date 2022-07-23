@@ -52,5 +52,12 @@
         "name" : "flex?",
         "description" : "Call this command to see if there is a possible flex angle.",
         "example" : "mups! flex?"
+    },
+
+    "getAFlexGoingCommand" : {
+        "identifier" : "getaflexgoing",
+        "name" : "get a flex going",
+        "description" : "If a flex is available, DMs all the available players, who aren't in the author's voice channel and asks if they want to flex. Then returns whether 5 or more people have voted yes.",
+        "example" : "mups! get a flex going"
     }
 }
