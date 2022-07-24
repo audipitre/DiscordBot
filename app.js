@@ -5,6 +5,7 @@ const { token } = require('./config.json');
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const client = new Client({ intents: [GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildPresences, GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
+module.exports = client;
 let allTheMups = require(__dirname + '/MupsData/mup_counter.json');
 
 const eventsPath = path.join(__dirname, 'events');

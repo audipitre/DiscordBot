@@ -59,5 +59,19 @@
         "name" : "get a flex going",
         "description" : "If a flex is available, DMs all the available players, who aren't in the author's voice channel and asks if they want to flex. Then returns whether 5 or more people have voted yes.",
         "example" : "mups! get a flex going"
+    },
+
+    "resetGetAFlexGoingCommand" : {
+        "identifier" : "resetgetaflexgoing",
+        "name" : "reset get a flex going",
+        "description" : "Forcifully resets the values of get a flex going.",
+        "example" : "mups! get a flex going"
+    },
+
+    "checkFlexAnswersCommand" : {
+        "identifier" : "checkflexanswers",
+        "name" : "check flex answers",
+        "description" : "Checks the current answers of people's replies to the getaflexgoing command.",
+        "example" : "mups! check flex answers"
     }
 }

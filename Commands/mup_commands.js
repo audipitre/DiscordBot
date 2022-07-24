@@ -2,40 +2,16 @@ const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const mupFunctions = require('./mup_functions.js');
 const mupCommandData = require('./commands.json');
 var path = require('path');
+const fs = require('fs');
 const { createAudioPlayer, createAudioResource, joinVoiceChannel } = require('@discordjs/voice');
 const { listAvailableAndNonAvailableBoys } = require('./mup_functions.js');
 const { MessageNonceType } = require('discord.js/src/errors/ErrorCodes.js');
 const { fileURLToPath } = require('url');
+const { get } = require('https');
 
-const flexers = require(path.dirname(__dirname) + '/MupsData/flexers.json')
 
 module.exports = {
-    testButtonCommand : function(message){
-        const row = new ActionRowBuilder()
-        .addComponents(
-            new ButtonBuilder()
-                .setCustomId('reeceYesButton')
-                .setLabel('Yes')
-                .setStyle(ButtonStyle.Primary),
-        );
-        const rows = new ActionRowBuilder()
-        .addComponents(
-            new ButtonBuilder()
-                .setCustomId('reeceNoButton')
-                .setLabel('No')
-                .setStyle(ButtonStyle.Primary),
-        );
-
-        const guildMembers = Array.from(message.client.users.cache);
-
-        for(var guildMember in guildMembers){
-            if(guildMembers[guildMember][1].username + "#" + guildMembers[guildMember][1].discriminator === flexers.luke){
-                guildMembers[guildMember][1].send({content: "Do you think James is a mup?", components: [row, rows]});
-            }
-        }
-    },
-
-    isBotRespondingCommand : function(message){
+    isBotRespondingCommand: function (message) {
         message.channel.send("I'm here ya mup!\n");
     },
 
@@ -45,7 +21,7 @@ module.exports = {
         mupFunctions.addMupCount(whoIsAMup, mupCounters, message);
     },
 
-    isAFuckingMupCommand : function (messageContents, mupCounters, message){
+    isAFuckingMupCommand: function (messageContents, mupCounters, message) {
         const whoIsAMup = messageContents.substring(0, messageContents.length - mupCommandData.isAFuckingMupCommand.identifier.length);
 
         mupFunctions.addFuckingMupCount(whoIsAMup, mupCounters, message);
@@ -94,52 +70,90 @@ module.exports = {
         })
     },
 
-    getAFlexGoingCommand: function(message){
-        //if(mupFunctions.isThereAPotentialFlex(message)){
-            if(true){
+    getAFlexGoingCommand: function (message) {
+        let getAFlexGoingTrackers = require('./CommandVariables/getAFlexGoingTrackers.js');
+
+        var availableBoys = [];
+        var unavailableBoys = [];
+
+        //if a certain amount of time has passed and there is a flex, you can go again
+        //if(mupFunctions.isThereAPotentialFlex(message) && !getAFlexGoingTrackers.currentlyGettingAFlex.get()){
+        if (true) {
+            getAFlexGoingTrackers.currentlyGettingAFlex.set(true);
             //dm all flexers not in the same channel
             message.guild.members.fetch().then(function (guildMembers) {
                 const theBoys = mupFunctions.getTheBoys(guildMembers);
 
-                for(var currentBoy in theBoys){
-                    if(theBoys[currentBoy].id === message.author.id){
+                for (var currentBoy in theBoys) {
+                    if (true) {
 
                         const yesAndNoButtons = new ActionRowBuilder()
-                        .addComponents(
-                            new ButtonBuilder()
-                            .setCustomId('getAFlexGoingYesButton')
-                            .setLabel('Yes')
-                            .setStyle(ButtonStyle.Success),
+                            .addComponents(
+                                new ButtonBuilder()
+                                    .setCustomId('getAFlexGoingYesButton')
+                                    .setLabel('Yes')
+                                    .setStyle(ButtonStyle.Success),
 
-                            new ButtonBuilder()
-                            .setCustomId('getAFlexGoingNoButton')
-                            .setLabel('No')
-                            .setStyle(ButtonStyle.Danger)
-                        );
+                                new ButtonBuilder()
+                                    .setCustomId('getAFlexGoingNoButton')
+                                    .setLabel('No')
+                                    .setStyle(ButtonStyle.Danger)
+                            );
 
-                        const botMessage = message.author.username + "#" + message.author.discriminator + " is trying to start a flex, would you be down?";
-                        theBoys[currentBoy].send({content: botMessage, components:[yesAndNoButtons]});
+                        availableBoys = mupFunctions.getAvailableBoys(theBoys, message);
+                        unavailableBoys = mupFunctions.getNotAvailableBoys(theBoys, message);
+
+                        //TO DO: Create a set up command for the get A flex going function. Has a flag saying a flex is currently going
+
+                        getAFlexGoingTrackers.getAFlexGoingChannelID.set(message.channel.id);
+
+                        //Refactor the conditions if bot should send message.
+
+                        if(theBoys[currentBoy].id === message.author.id){
+                            const botMessage = message.author.username + "#" + message.author.discriminator + " is trying to start a flex, would you be down?";
+                            theBoys[currentBoy].send({ content: botMessage, components: [yesAndNoButtons] })
+                        }
+
+                        // const voiceChannelOfAuthor = message.member.voice.channelId;
+                        // if (voiceChannelOfAuthor) {
+                        //     if ( (theBoys[currentBoy].voice.channelId !== voiceChannelOfAuthor && theBoys[currentBoy].id !== message.author.id) || (theBoys[currentBoy].voice.channelId === voiceChannelOfAuthor && message.member.voice.deaf)) {
+                        //         const botMessage = message.author.username + "#" + message.author.discriminator + " is trying to start a flex, would you be down?";
+                        //         theBoys[currentBoy].send({ content: botMessage, components: [yesAndNoButtons] });
+                        //     }
+                        // }
+                        // else {
+                        //     if (theBoys[currentBoy].id !== message.author.id) {
+                        //         const botMessage = message.author.username + "#" + message.author.discriminator + " is trying to start a flex, would you be down?";
+                        //         theBoys[currentBoy].send({ content: botMessage, components: [yesAndNoButtons] });
+                        //     }
+                        // }
+
+
                     }
                 }
+
+                message.channel.send(listAvailableAndNonAvailableBoys(availableBoys, unavailableBoys, message));
+                message.channel.send(`\n**A message has been sent to the available mups, who aren't in the same voice channel as ${message.author.username}#${message.author.discriminator}, asking if they'd be down for a flex.**`);
             });
         }
-        else{
-            
+        else {
+            //Tell the author that a flex is still trying to get together and list the results and time of when command was called.
+            message.channel.send(`A flex is still underway`);
         }
     },
 
-    audioTestCommand: function (message) {
-        const connection = joinVoiceChannel(
-            {
-                channelId: message.member.voice.channel,
-                guildId: message.guild.id,
-                adapterCreator: message.guild.voiceAdapterCreator
-            });
+    resetGetAFlexGoingCommand : function(message){
+        //TO DO: DISABLE BUTTONS!!! 
+        let flexers = require(path.dirname(__dirname) + '/MupsData/flexers.json')
+        for(var flexer in flexers){
+            flexers[flexer].hasAnswered = false;
+            flexers[flexer].getAFlexGoingAnswers = 0;
+        }
 
-        const player = createAudioPlayer();
-        const resource = createAudioResource(path.dirname(__dirname) + "/MupsData/lukeclegg.mp3");
+        let data = JSON.stringify(flexers);
+        fs.writeFileSync(path.dirname(__dirname) + "/MupsData/flexers.json", data);
 
-        player.play(resource);
-        connection.subscribe(player);
+        let getAFlexGoingTrackers = require('./CommandVariables/getAFlexGoingTrackers.js');
+        getAFlexGoingTrackers.currentlyGettingAFlex.set(false);
     }
 }

@@ -66,7 +66,7 @@ module.exports =
                 let memberUsername = theMembers[currentMember].user.username;
                 let memberTag = theMembers[currentMember].user.discriminator;
 
-                if (memberUsername+ "#" + memberTag === flexers[currentFlexer]) {
+                if (memberUsername+ "#" + memberTag === flexers[currentFlexer].id) {
                     theBoys.push(theMembers[currentMember]);
                 }
             }

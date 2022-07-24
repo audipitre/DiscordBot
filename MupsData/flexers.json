@@ -1,8 +1,32 @@
 {
-    "luke" : "Cleggeh#5582",
-    "reece" : "Phyv#8977",
-    "james" : "JamesewiL#9797",
-    "cal" : "cal#7532",
-    "ryan" : "Kosaine#6500",
-    "adam" : "Sibbs#7284"
+    "luke": {
+        "id": "Cleggeh#5582",
+        "getAFlexGoingAnswers": 0,
+        "hasAnswered": false
+    },
+    "reece": {
+        "id": "Phyv#8977",
+        "getAFlexGoingAnswers": 0,
+        "hasAnswered": false
+    },
+    "james": {
+        "id": "JamesewiL#9797",
+        "getAFlexGoingAnswers": 0,
+        "hasAnswered": false
+    },
+    "cal": {
+        "id": "cal#7532",
+        "getAFlexGoingAnswers": 0,
+        "hasAnswered": false
+    },
+    "ryan": {
+        "id": "Kosaine#6500",
+        "getAFlexGoingAnswers": 0,
+        "hasAnswered": false
+    },
+    "adam": {
+        "id": "Sibbs#7284",
+        "getAFlexGoingAnswers": 0,
+        "hasAnswered": false
+    }
 }

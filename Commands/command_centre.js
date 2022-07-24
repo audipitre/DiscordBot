@@ -82,6 +82,10 @@ module.exports = {
                         mupCommands.getAFlexGoingCommand(message);
                         mupFunctions.logCommandUses(message, mupCommandData.getAFlexGoingCommand.identifier);
                         break;
+                    case mupCommandData.resetGetAFlexGoingCommand.identifier:
+                        mupCommands.resetGetAFlexGoingCommand(message);
+                        mupFunctions.logCommandUses(message, mupCommandData.getAFlexGoingCommand.identifier);
+                        break;
                     default:
                         message.channel.send(`Command: '${arguments}' could not be found.`);
                 }
