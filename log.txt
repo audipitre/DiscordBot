@@ -12,3 +12,69 @@ cal#7532 called command: showmup at Sat Jul 23 2022 19:02:44 GMT+0100 (British S
 
 cal#7532 called command: flex? at Sat Jul 23 2022 19:02:47 GMT+0100 (British Summer Time)
 
+cal#7532 called command: undefined at Sun Jul 24 2022 04:46:48 GMT+0100 (British Summer Time)
+
+cal#7532 called command: showallmups at Sun Jul 24 2022 04:47:40 GMT+0100 (British Summer Time)
+
+cal#7532 called command: flex? at Sun Jul 24 2022 04:57:48 GMT+0100 (British Summer Time)
+
+cal#7532 called command: flex? at Sun Jul 24 2022 04:58:05 GMT+0100 (British Summer Time)
+
+cal#7532 called command: flex? at Sun Jul 24 2022 04:58:29 GMT+0100 (British Summer Time)
+
+cal#7532 called command: flex? at Sun Jul 24 2022 05:00:26 GMT+0100 (British Summer Time)
+
+cal#7532 called command: flex? at Sun Jul 24 2022 05:02:01 GMT+0100 (British Summer Time)
+
+cal#7532 called command: flex? at Sun Jul 24 2022 05:02:38 GMT+0100 (British Summer Time)
+
+cal#7532 called command: flex? at Sun Jul 24 2022 05:02:54 GMT+0100 (British Summer Time)
+
+cal#7532 called command: flex? at Sun Jul 24 2022 05:03:29 GMT+0100 (British Summer Time)
+
+cal#7532 called command: flex? at Sun Jul 24 2022 05:11:39 GMT+0100 (British Summer Time)
+
+cal#7532 called command: mups! get a flex going at Sun Jul 24 2022 05:11:48 GMT+0100 (British Summer Time)
+
+cal#7532 called command: mups! get a flex going at Sun Jul 24 2022 05:12:36 GMT+0100 (British Summer Time)
+
+cal#7532 called command: mups! get a flex going at Sun Jul 24 2022 05:12:54 GMT+0100 (British Summer Time)
+
+cal#7532 called command: getaflexgoing at Sun Jul 24 2022 05:13:34 GMT+0100 (British Summer Time)
+
+cal#7532 called command: getaflexgoing at Sun Jul 24 2022 05:15:14 GMT+0100 (British Summer Time)
+
+cal#7532 called command: getaflexgoing at Sun Jul 24 2022 05:16:03 GMT+0100 (British Summer Time)
+
+cal#7532 called command: getaflexgoing at Sun Jul 24 2022 05:16:18 GMT+0100 (British Summer Time)
+
+cal#7532 called command: getaflexgoing at Sun Jul 24 2022 05:17:15 GMT+0100 (British Summer Time)
+
+cal#7532 called command: getaflexgoing at Sun Jul 24 2022 05:18:14 GMT+0100 (British Summer Time)
+
+cal#7532 called command: getaflexgoing at Sun Jul 24 2022 05:20:05 GMT+0100 (British Summer Time)
+
+cal#7532 called command: getaflexgoing at Sun Jul 24 2022 05:29:28 GMT+0100 (British Summer Time)
+
+cal#7532 called command: getaflexgoing at Sun Jul 24 2022 05:30:05 GMT+0100 (British Summer Time)
+
+cal#7532 called command: getaflexgoing at Sun Jul 24 2022 05:31:57 GMT+0100 (British Summer Time)
+
+cal#7532 called command: getaflexgoing at Sun Jul 24 2022 05:32:42 GMT+0100 (British Summer Time)
+
+cal#7532 called command: getaflexgoing at Sun Jul 24 2022 05:32:56 GMT+0100 (British Summer Time)
+
+cal#7532 called command: getaflexgoing at Sun Jul 24 2022 05:33:37 GMT+0100 (British Summer Time)
+
+cal#7532 called command: getaflexgoing at Sun Jul 24 2022 05:38:43 GMT+0100 (British Summer Time)
+
+cal#7532 called command: getaflexgoing at Sun Jul 24 2022 05:39:01 GMT+0100 (British Summer Time)
+
+cal#7532 called command: getaflexgoing at Sun Jul 24 2022 05:39:41 GMT+0100 (British Summer Time)
+
+cal#7532 called command: getaflexgoing at Sun Jul 24 2022 05:39:58 GMT+0100 (British Summer Time)
+
+cal#7532 called command: getaflexgoing at Sun Jul 24 2022 05:43:23 GMT+0100 (British Summer Time)
+
+cal#7532 called command: getaflexgoing at Sun Jul 24 2022 05:59:12 GMT+0100 (British Summer Time)
+

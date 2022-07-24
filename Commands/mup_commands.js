@@ -86,8 +86,8 @@ module.exports = {
         message.guild.members.fetch().then(function (guildMembers) {
             const theBoys = mupFunctions.getTheBoys(guildMembers);
 
-            availableBoys = mupFunctions.getAvailableBoys(theBoys);
-            notAvailableBoys = mupFunctions.getNotAvailableBoys(theBoys);
+            availableBoys = mupFunctions.getAvailableBoys(theBoys, message);
+            notAvailableBoys = mupFunctions.getNotAvailableBoys(theBoys, message);
 
             const botMessage = mupFunctions.getFlexMessage(availableBoys.length) + mupFunctions.listAvailableAndNonAvailableBoys(availableBoys, notAvailableBoys, message);
             message.channel.send(botMessage);
@@ -95,8 +95,33 @@ module.exports = {
     },
 
     getAFlexGoingCommand: function(message){
-        if(mupFunctions.isThereAPotentialFlex(message)){
+        //if(mupFunctions.isThereAPotentialFlex(message)){
+            if(true){
+            //dm all flexers not in the same channel
+            message.guild.members.fetch().then(function (guildMembers) {
+                const theBoys = mupFunctions.getTheBoys(guildMembers);
 
+                for(var currentBoy in theBoys){
+                    if(theBoys[currentBoy].id === message.author.id){
+
+                        const yesAndNoButtons = new ActionRowBuilder()
+                        .addComponents(
+                            new ButtonBuilder()
+                            .setCustomId('getAFlexGoingYesButton')
+                            .setLabel('Yes')
+                            .setStyle(ButtonStyle.Success),
+
+                            new ButtonBuilder()
+                            .setCustomId('getAFlexGoingNoButton')
+                            .setLabel('No')
+                            .setStyle(ButtonStyle.Danger)
+                        );
+
+                        const botMessage = message.author.username + "#" + message.author.discriminator + " is trying to start a flex, would you be down?";
+                        theBoys[currentBoy].send({content: botMessage, components:[yesAndNoButtons]});
+                    }
+                }
+            });
         }
         else{
             

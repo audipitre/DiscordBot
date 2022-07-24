@@ -1,6 +1,5 @@
 const fs = require("fs");
 var path = require('path');
-const { isPromise } = require("util/types");
 
 const flexers = require(path.dirname(__dirname) + '/MupsData/flexers.json')
 
@@ -30,12 +29,14 @@ module.exports =
     isThisBoyAvailable : function(theBoy, message){
         const inVoiceChannel = theBoy.voice.channel !== null;
 
+        const isAuthor = theBoy.id === message.author.id;
+        
         let isAppearingOnline = false;
         if(theBoy.presence!== null){
             isAppearingOnline = theBoy.presence.status === 'online';
         }
 
-        return inVoiceChannel || isAppearingOnline;
+        return inVoiceChannel || isAppearingOnline || isAuthor;
     },
     
     listAvailableAndNonAvailableBoys : function(availableBoys, notAvailableBoys, message){
@@ -158,20 +159,20 @@ module.exports =
         fs.writeFileSync(path.dirname(__dirname) + "/MupsData/mup_counter.json", data);
     },
 
-    getAvailableBoys : function(theBoys){
+    getAvailableBoys : function(theBoys, message){
         let availableBoys = [];
         for (var currentBoy in theBoys) {
-            if (module.exports.isThisBoyAvailable(theBoys[currentBoy])) {
+            if (module.exports.isThisBoyAvailable(theBoys[currentBoy], message)) {
                 availableBoys.push(theBoys[currentBoy]);
             }
         }
         return availableBoys;
     },
 
-    getNotAvailableBoys : function(theBoys){
+    getNotAvailableBoys : function(theBoys, message){
         let notAvailableBoys = [];
         for(var currentBoy in theBoys){
-            if(!module.exports.isThisBoyAvailable(theBoys[currentBoy])){
+            if(!module.exports.isThisBoyAvailable(theBoys[currentBoy], message)){
                 notAvailableBoys.push(theBoys[currentBoy]);
             }
         }
@@ -183,8 +184,8 @@ module.exports =
 
         message.guild.members.fetch().then(function (guildMembers) {
             theBoys = module.exports.getTheBoys(guildMembers, message);
-            let availableBoys = getAvailableBoys(theBoys);
-            let notAvailableBoys = getNotAvailableBoys(theBoys);
+            let availableBoys = module.exports.getAvailableBoys(theBoys, message);
+            let notAvailableBoys = module.exports.getNotAvailableBoys(theBoys, message);
 
             if (availableBoys.length >= 3 ){
                 potentialFlex = true;
@@ -196,7 +197,7 @@ module.exports =
         return potentialFlex;
     },
 
-    logCommandUses : function(message, whoUsed, commandUsed){
+    logCommandUses : function(message, commandUsed){
         const pathToLogFile = path.dirname(__dirname) + '\\log.txt'
         let data_ob = new Date();
         const logLine = `${message.author.username}#${message.author.discriminator} called command: ${commandUsed} at ${data_ob}`
